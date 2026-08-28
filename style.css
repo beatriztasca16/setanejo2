@@ -1,24 +1,81 @@
+/* ESTILO MODERNO - SITE DE MÚSICA */
 
 body {
-    background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
-    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(135deg, #0a0a1a, #1a1a3e, #0d1b2a);
+    font-family: 'Segoe UI', Arial, sans-serif;
     margin: 0;
     padding: 20px;
 }
 
+/* TÍTULO PRINCIPAL - como se fosse uma capa de show */
 h1 {
     color: #ffd700;
-    /* Dourado - igual a um violão iluminado! */
     text-align: center;
-    font-size: 48px;
-    text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+    font-size: 52px;
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.3), 3px 3px 6px rgba(0,0,0,0.5);
+    margin-top: 10px;
+    letter-spacing: 3px;
 }
 
+/* TÍTULOS DAS CATEGORIAS */
 h2 {
     color: #ffffff;
     text-align: center;
-    font-size: 32px;
-    margin-top: 40px;
+    font-size: 36px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
     border-bottom: 3px solid #ffd700;
-    padding-bottom: 10px;
+    display: inline-block;
+    /* Faz a linha dourada ficar só no tamanho do texto */
+    letter-spacing: 2px;
+}
+
+/* CENTRALIZA OS TÍTULOS H2 */
+h2 {
+    display: block;
+    text-align: center;
+}
+
+/* CADA VÍDEO VIRA UM "CARD" BONITINHO */
+iframe {
+    display: block;
+    /* Faz o vídeo ocupar uma linha inteira */
+    margin: 30px auto;
+    /* Centraliza e dá espaço entre os vídeos */
+    max-width: 800px;
+    /* Limita o tamanho máximo */
+    width: 100%;
+    /* Ocupa toda a largura disponível até 800px */
+    border-radius: 16px;
+    /* Cantos arredondados - MODERNO! */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    /* Sombra para dar profundidade */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* Efeito suave ao passar o mouse */
+}
+
+/* EFEITO ESPECIAL: quando passar o mouse por cima do vídeo */
+iframe:hover {
+    transform: scale(1.02);
+    /* Aumenta 2% - efeito de "zoom" */
+    box-shadow: 0 12px 48px rgba(255, 215, 0, 0.2);
+    /* Sombra dourada ao passar o mouse */
+}
+
+/* TIRANDO AQUELE TEXTO "disney" solto que aparecia */
+body :not(h1):not(h2):not(iframe) {
+    /* Esconde textos indesejados */
+    display: none;
+}
+
+/* MAS DEIXA OS TÍTULOS E VÍDEOS VISÍVEIS */
+h1, h2, iframe {
+    display: block;
+}
+
+/* PEQUENO DETALHE: espaço extra entre as seções */
+br {
+    display: none;
+    /* Esconde as quebras de linha extras */
 }
