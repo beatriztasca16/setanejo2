@@ -1,179 +1,506 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Music sertanejo2</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Music Sertanejo 2 · Playlist</title>
+  <!-- Google Fonts + Font Awesome for icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0b0d11;
+      background-image: radial-gradient(circle at 10% 20%, #1a1f2b 0%, #0b0d11 90%);
+      font-family: 'Inter', sans-serif;
+      color: #f0f3f8;
+      padding: 2rem 1.5rem 4rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .container {
+      max-width: 1440px;
+      width: 100%;
+    }
+
+    /* cabeçalho */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding-bottom: 1.5rem;
+    }
+
+    .header-left h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #f7b731, #f5a623);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .header-left h1 i {
+      -webkit-text-fill-color: initial;
+      color: #f5a623;
+      font-size: 2.2rem;
+    }
+
+    .header-left .sub {
+      font-size: 1rem;
+      color: #a3b3cc;
+      margin-top: 0.25rem;
+      font-weight: 400;
+      letter-spacing: 0.3px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .header-left .sub i {
+      color: #f5a623;
+      font-size: 0.9rem;
+    }
+
+    .header-right {
+      display: flex;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    .header-right .pill {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(4px);
+      padding: 0.5rem 1.2rem;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #cbd5e1;
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .header-right .pill i {
+      color: #f5a623;
+    }
+
+    /* seções */
+    .section {
+      margin-bottom: 4rem;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.8rem;
+      position: relative;
+    }
+
+    .section-header h2 {
+      font-size: 2rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      background: linear-gradient(to right, #ffffff, #b9c7e0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .section-header h2 i {
+      -webkit-text-fill-color: initial;
+      color: #f5a623;
+      font-size: 1.6rem;
+    }
+
+    .section-header .line {
+      flex: 1;
+      height: 2px;
+      background: linear-gradient(90deg, rgba(245, 166, 35, 0.3), transparent);
+    }
+
+    /* grid de vídeos */
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 2rem 1.8rem;
+    }
+
+    .video-card {
+      background: rgba(22, 28, 40, 0.6);
+      backdrop-filter: blur(8px);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      transition: transform 0.25s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .video-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 28px 45px -12px rgba(0, 0, 0, 0.9);
+      border-color: rgba(245, 166, 35, 0.15);
+    }
+
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%; /* 16:9 */
+      background: #0f1219;
+      border-radius: 24px 24px 0 0;
+      overflow: hidden;
+    }
+
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .video-meta {
+      padding: 1rem 1.2rem 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .video-meta .badge {
+      background: rgba(245, 166, 35, 0.15);
+      color: #f5a623;
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 0.2rem 0.8rem;
+      border-radius: 30px;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .video-meta .title-tag {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #d6e0f0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 180px;
+    }
+
+    .video-meta .title-tag i {
+      margin-right: 0.3rem;
+      color: #f5a623;
+      opacity: 0.7;
+    }
+
+    /* responsivo */
+    @media (max-width: 700px) {
+      .header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .header-left h1 {
+        font-size: 2.2rem;
+      }
+      .video-grid {
+        grid-template-columns: 1fr;
+      }
+      .section-header h2 {
+        font-size: 1.6rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body { padding: 1rem 0.8rem; }
+      .header-left h1 { font-size: 1.8rem; }
+      .video-meta { flex-wrap: wrap; }
+      .video-meta .title-tag { max-width: 140px; }
+    }
+
+    /* rodapé sutil */
+    .footer-note {
+      margin-top: 3rem;
+      text-align: center;
+      color: #4e5a70;
+      font-size: 0.8rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      padding-top: 2rem;
+      letter-spacing: 0.3px;
+    }
+
+    .footer-note i {
+      color: #f5a623;
+      margin: 0 0.2rem;
+    }
+  </style>
 </head>
-
 <body>
-    <h1>music sertanejo2</h1>
+<div class="container">
 
-    <h2>sertanejo</h2>
+  <!-- cabeçalho moderno -->
+  <div class="header">
+    <div class="header-left">
+      <h1>
+        <i class="fas fa-music"></i> Music Sertanejo2
+      </h1>
+      <div class="sub">
+        <i class="fas fa-headphones-simple"></i> playlists curadas · sertanejo, gospel, inglês, disney
+      </div>
+    </div>
+    <div class="header-right">
+      <span class="pill"><i class="fas fa-play"></i> 26 músicas</span>
+      <span class="pill"><i class="fas fa-clock"></i> atualizado 2026</span>
+    </div>
+  </div>
 
+  <!-- SERTANEJO -->
+  <div class="section">
+    <div class="section-header">
+      <h2><i class="fas fa-guitar"></i> Sertanejo</h2>
+      <span class="line"></span>
+    </div>
+    <div class="video-grid">
+      <!-- 1 -->
+      <div class="video-card">
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/wxLE0V9EFqg?list=RD4WFnsECOqUs" title="Zé Neto e Cristiano - POR NOSSOS FILHOS" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div class="video-meta">
+          <span class="badge">sertanejo</span>
+          <span class="title-tag"><i class="fas fa-play"></i> Por Nossos Filhos</span>
+        </div>
+      </div>
+      <!-- 2 -->
+      <div class="video-card">
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/lBDDMrUCz1A?list=RDlBDDMrUCz1A" title="Zé Neto e Cristiano - Cadeira Cativa" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div class="video-meta">
+          <span class="badge">sertanejo</span>
+          <span class="title-tag"><i class="fas fa-play"></i> Cadeira Cativa</span>
+        </div>
+      </div>
+      <!-- 3 -->
+      <div class="video-card">
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/tPmS-CfIeNk?list=RDtPmS-CfIeNk" title="Luan Santana - TE ESPERANDO" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div class="video-meta">
+          <span class="badge">sertanejo</span>
+          <span class="title-tag"><i class="fas fa-play"></i> Te Esperando</span>
+        </div>
+      </div>
+      <!-- 4 (repetido? mas mantido como original) -->
+      <div class="video-card">
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/wxLE0V9EFqg?list=RDwxLE0V9EFqg" title="Zé Neto e Cristiano - POR NOSSOS FILHOS" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div class="video-meta">
+          <span class="badge">sertanejo</span>
+          <span class="title-tag"><i class="fas fa-play"></i> Por Nossos Filhos</span>
+        </div>
+      </div>
+      <!-- 5 -->
+      <div class="video-card">
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/2yreX_ZCfgM?list=RD2yreX_ZCfgM" title="Peão Todo Tatuado - Jeninho, Mariana Fagundes" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div class="video-meta">
+          <span class="badge">sertanejo</span>
+          <span class="title-tag"><i class="fas fa-play"></i> Peão Todo Tatuado</span>
+        </div>
+      </div>
+      <!-- 6 -->
+      <div class="video-card">
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/7t5mi3M_lAY?list=RD7t5mi3M_lAY" title="Zé Neto e Cristiano - Barulho do Foguete" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div class="video-meta">
+          <span class="badge">sertanejo</span>
+          <span class="title-tag"><i class="fas fa-play"></i> Barulho do Foguete</span>
+        </div>
+      </div>
+      <!-- 7 -->
+      <div class="video-card">
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/-bS3mQhb01g?list=RD-bS3mQhb01g" title="Danilo e Davi - Apaga Apaga Apaga" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div class="video-meta">
+          <span class="badge">sertanejo</span>
+          <span class="title-tag"><i class="fas fa-play"></i> Apaga Apaga Apaga</span>
+        </div>
+      </div>
+    </div>
+  </div>
 
+  <!-- GOSPEL -->
+  <div class="section">
+    <div class="section-header">
+      <h2><i class="fas fa-hands-praying"></i> Gospel</h2>
+      <span class="line"></span>
+    </div>
+    <div class="video-grid">
+      <div class="video-card">
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/c5T42akT1EA?list=RDc5T42akT1EA" title="Tu és + Águas purificadoras" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div class="video-meta"><span class="badge">gospel</span><span class="title-tag"><i class="fas fa-play"></i> Tu és + Águas</span></div>
+      </div>
+      <div class="video-card">
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/ldK43s9UyQI?list=RDlRL8rt55szw" title="JULLIANY SOUZA - AH, JESUS / CORAÇÃO IGUAL AO TEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div class="video-meta"><span class="badge">gospel</span><span class="title-tag"><i class="fas fa-play"></i> Ah, Jesus</span></div>
+      </div>
+      <div class="video-card">
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/xG7sSQhchJY?list=RDxG7sSQhchJY" title="Me Ama | Get Worship" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div class="video-meta"><span class="badge">gospel</span><span class="title-tag"><i class="fas fa-play"></i> Me Ama</span></div>
+      </div>
+      <div class="video-card">
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/1lMFElbRIos?list=RD1lMFElbRIos" title="O maior vilão sou eu - Sarah Beatriz" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div class="video-meta"><span class="badge">gospel</span><span class="title-tag"><i class="fas fa-play"></i> O maior vilão</span></div>
+      </div>
+      <div class="video-card">
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/yovzEEYOl-E?list=RDyovzEEYOl-E" title="Leandro Borges - Deus e Eu" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div class="video-meta"><span class="badge">gospel</span><span class="title-tag"><i class="fas fa-play"></i> Deus e Eu</span></div>
+      </div>
+      <div class="video-card">
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/j5eO3WCtNQA" title="Pentecostes (Ao Vivo) | Ministério Mergulhar" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div class="video-meta"><span class="badge">gospel</span><span class="title-tag"><i class="fas fa-play"></i> Pentecostes</span></div>
+      </div>
+    </div>
+  </div>
 
+  <!-- INGLÊS -->
+  <div class="section">
+    <div class="section-header">
+      <h2><i class="fas fa-globe"></i> Inglês</h2>
+      <span class="line"></span>
+    </div>
+    <div class="video-grid">
+      <div class="video-card">
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/LHCob76kigA?list=RDLHCob76kigA" title="Lukas Graham - 7 Years" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div class="video-meta"><span class="badge">inglês</span><span class="title-tag"><i class="fas fa-play"></i> 7 Years</span></div>
+      </div>
+      <div class="video-card">
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/nKX8ZNzuvNs?list=RDnKX8ZNzuvNs" title="Fuerza Regida, Grupo Frontera - ME JALO" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div class="video-meta"><span class="badge">inglês</span><span class="title-tag"><i class="fas fa-play"></i> ME JALO</span></div>
+      </div>
+      <div class="video-card">
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/rYEDA3JcQqw?list=RDrYEDA3JcQqw" title="Adele - Rolling in the Deep" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div class="video-meta"><span class="badge">inglês</span><span class="title-tag"><i class="fas fa-play"></i> Rolling in the Deep</span></div>
+      </div>
+      <div class="video-card">
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/u2ah9tWTkmk?list=RDu2ah9tWTkmk" title="Alex Warren - Ordinary" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div class="video-meta"><span class="badge">inglês</span><span class="title-tag"><i class="fas fa-play"></i> Ordinary</span></div>
+      </div>
+      <div class="video-card">
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/Vk-aHjCdd6M?list=RDVk-aHjCdd6M" title="SI NO ESTÁS - IÑIGO QUINTERO" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div class="video-meta"><span class="badge">inglês</span><span class="title-tag"><i class="fas fa-play"></i> Si No Estás</span></div>
+      </div>
+      <div class="video-card">
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/9gWIIIr2Asw?list=RD9gWIIIr2Asw" title="Teddy Swims - Lose Control" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div class="video-meta"><span class="badge">inglês</span><span class="title-tag"><i class="fas fa-play"></i> Lose Control</span></div>
+      </div>
+    </div>
+  </div>
 
+  <!-- DISNEY -->
+  <div class="section">
+    <div class="section-header">
+      <h2><i class="fas fa-crown"></i> Disney</h2>
+      <span class="line"></span>
+    </div>
+    <div class="video-grid">
+      <div class="video-card">
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/0Jj9WOKSf74?list=RD0Jj9WOKSf74" title="Lara Suleiman - Só Vai (Moana 2)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div class="video-meta"><span class="badge">disney</span><span class="title-tag"><i class="fas fa-play"></i> Só Vai</span></div>
+      </div>
+      <div class="video-card">
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/oIfXG_kscH4?list=RDoIfXG_kscH4" title="Saulo Vasconcellos - De nada (Moana)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div class="video-meta"><span class="badge">disney</span><span class="title-tag"><i class="fas fa-play"></i> De nada</span></div>
+      </div>
+      <div class="video-card">
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/JFYedt-KnB0?list=RDJFYedt-KnB0" title="Dove Cameron - If Only (Descendants)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div class="video-meta"><span class="badge">disney</span><span class="title-tag"><i class="fas fa-play"></i> If Only</span></div>
+      </div>
+      <div class="video-card">
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/tSDcbucrWmw?list=RDtSDcbucrWmw" title="Chillin' Like a Villain (Descendants 2)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div class="video-meta"><span class="badge">disney</span><span class="title-tag"><i class="fas fa-play"></i> Chillin' Like a Villain</span></div>
+      </div>
+      <div class="video-card">
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/PrL_b__CHrw?list=RDPrL_b__CHrw" title="Dove Cameron - Do What You Gotta Do (Descendants 3)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div class="video-meta"><span class="badge">disney</span><span class="title-tag"><i class="fas fa-play"></i> Do What You Gotta Do</span></div>
+      </div>
+      <div class="video-card">
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/_dyvXcv3ej0?list=RD_dyvXcv3ej0" title="What's My Name (Descendants 2)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div class="video-meta"><span class="badge">disney</span><span class="title-tag"><i class="fas fa-play"></i> What's My Name</span></div>
+      </div>
+    </div>
+  </div>
 
-    <iframe width="1840" height="1035" src="https://www.youtube.com/embed/wxLE0V9EFqg?list=RD4WFnsECOqUs"
-        title="Zé Neto e Cristiano - POR NOSSOS FILHOS - DVD Um Novo Sonho" frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-    <iframe width="1337" height="752" src="https://www.youtube.com/embed/lBDDMrUCz1A?list=RDlBDDMrUCz1A"
-        title="Zé Neto e Cristiano - Cadeira Cativa (Vocês e Deus)" frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-
-
-    <iframe width="1337" height="752" src="https://www.youtube.com/embed/tPmS-CfIeNk?list=RDtPmS-CfIeNk"
-        title="Luan Santana - TE ESPERANDO (Registro Histórico)" frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-
-    <iframe width="1337" height="752" src="https://www.youtube.com/embed/wxLE0V9EFqg?list=RDwxLE0V9EFqg"
-        title="Zé Neto e Cristiano - POR NOSSOS FILHOS - DVD Um Novo Sonho" frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-
-    <iframe width="1337" height="752" src="https://www.youtube.com/embed/2yreX_ZCfgM?list=RD2yreX_ZCfgM"
-        title="Peão Todo Tatuado - Jeninho, Mariana Fagundes (Abacaxi Pegou Preço Ao Vivo em Goiânia)" frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-    <iframe width="1337" height="752" src="https://www.youtube.com/embed/7t5mi3M_lAY?list=RD7t5mi3M_lAY"
-        title="Zé Neto e Cristiano - Barulho do Foguete - #Escolhas" frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>]
-
-
-    <iframe width="1337" height="752" src="https://www.youtube.com/embed/-bS3mQhb01g?list=RD-bS3mQhb01g"
-        title="Danilo e Davi - Apaga Apaga Apaga (DVD ALIANÇA)" frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-
-
-    <h2>gospel</h2>
-
-
-    <iframe width="1337" height="752" src="https://www.youtube.com/embed/c5T42akT1EA?list=RDc5T42akT1EA"
-        title="Tu és + Águas purificadoras (Versão reduzida) - Fhop Music" frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-
-    <iframe width="1337" height="752" src="https://www.youtube.com/embed/ldK43s9UyQI?list=RDlRL8rt55szw"
-        title="JULLIANY SOUZA - AH, JESUS / CORAÇÃO IGUAL AO TEU (AO VIVO)" frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-    <iframe width="1337" height="752" src="https://www.youtube.com/embed/xG7sSQhchJY?list=RDxG7sSQhchJY"
-        title="Me Ama | Get Worship (Clipe Oficial)" frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-    <iframe width="1337" height="564" src="https://www.youtube.com/embed/1lMFElbRIos?list=RD1lMFElbRIos"
-        title="O maior vilão sou eu - Sarah Beatriz ( Clipe Oficial )" frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-    <iframe width="1337" height="752" src="https://www.youtube.com/embed/yovzEEYOl-E?list=RDyovzEEYOl-E"
-        title="Leandro Borges - Deus e Eu (Não conte seus maiores sonhos a ninguém) (Ao Vivo)" frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-
-
-    <iframe width="1337" height="752" src="https://www.youtube.com/embed/j5eO3WCtNQA"
-        title="Pentecostes (Ao Vivo) | Ministério Mergulhar e Nathalia Valencia" frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-
-    <h2>ingles</h2>
-
-
-    <iframe width="1337" height="722" src="https://www.youtube.com/embed/LHCob76kigA?list=RDLHCob76kigA"
-        title="Lukas Graham - 7 Years [Official Music Video]" frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-    <iframe width="1337" height="706" src="https://www.youtube.com/embed/nKX8ZNzuvNs?list=RDnKX8ZNzuvNs"
-        title="Fuerza Regida, Grupo Frontera - ME JALO (Video Oficial)" frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-
-    <iframe width="1337" height="752" src="https://www.youtube.com/embed/rYEDA3JcQqw?list=RDrYEDA3JcQqw"
-        title="Adele - Rolling in the Deep (Official Music Video)" frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-    <iframe width="1337" height="669" src="https://www.youtube.com/embed/u2ah9tWTkmk?list=RDu2ah9tWTkmk"
-        title="Alex Warren - Ordinary (Official Video)" frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-    <iframe width="1337" height="752" src="https://www.youtube.com/embed/Vk-aHjCdd6M?list=RDVk-aHjCdd6M"
-        title="SI NO ESTÁS - IÑIGO QUINTERO (VÍDEO OFICIAL) (HD)" frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-    <iframe width="1337" height="752" src="https://www.youtube.com/embed/9gWIIIr2Asw?list=RD9gWIIIr2Asw"
-        title="Teddy Swims - Lose Control (The Village Sessions)" frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-
-    <h2>disney</h2>
-
-
-    disney
-
-    <iframe width="1337" height="752" src="https://www.youtube.com/embed/0Jj9WOKSf74?list=RD0Jj9WOKSf74"
-        title="Lara Suleiman - Só Vai (De &quot;Moana 2&quot;)" frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-
-    <iframe width="1337" height="752" src="https://www.youtube.com/embed/oIfXG_kscH4?list=RDoIfXG_kscH4"
-        title="Saulo Vasconcellos - De nada (De &quot;Moana&quot;)" frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-
-    <iframe width="1337" height="752" src="https://www.youtube.com/embed/JFYedt-KnB0?list=RDJFYedt-KnB0"
-        title="Dove Cameron - If Only (from Descendants) (Official Video)" frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-
-    <iframe width="1337" height="752" src="https://www.youtube.com/embed/tSDcbucrWmw?list=RDtSDcbucrWmw"
-        title="Chillin&#39; Like a Villain (From &quot;Descendants 2&quot;)" frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-
-    <iframe width="1337" height="752" src="https://www.youtube.com/embed/PrL_b__CHrw?list=RDPrL_b__CHrw"
-        title="Dove Cameron, Cheyenne Jackson - Do What You Gotta Do (From &quot;Descendants 3&quot;)" frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-
-    <iframe width="1337" height="752" src="https://www.youtube.com/embed/_dyvXcv3ej0?list=RD_dyvXcv3ej0"
-        title="What&#39;s My Name (from Descendants 2) (Official Video)" frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-
-
-
+  <div class="footer-note">
+    <i class="fas fa-headphones"></i>  music sertanejo2 ·  <i class="fas fa-compact-disc"></i>  todas as faixas em alta definição
+  </div>
+</div>
 </body>
-
 </html>
